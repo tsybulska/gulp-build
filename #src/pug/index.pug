@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    include components/head.pug
+  body
+    include components/header.pug
+    main.container
+      section.content
+        .content__top
+          // img(src='./assets/img/hello.png', alt='hello')
+          svg(width='230' height='230')
+            use(xlink:href='./assets/icons/sprite.svg#moon')
+          h1 This gulp template works perfectly!
+        .content__bottom
+          p
+            a(href='https://tsybulskayalena.github.io/') Developed by Olena Tsybulska
+    include components/footer.pug

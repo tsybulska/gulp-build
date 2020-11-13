@@ -18,8 +18,11 @@ body {
   text-transform: uppercase;
 }
 
-.wrapper {
+html,
+body {
   overflow: hidden;
+  position: relative;
+  height: 100%;
 }
 
 h1,
@@ -68,8 +71,9 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    p {
+    h1 {
       padding: 30px;
+      font-weight: 400;
     }
   }
 }
