@@ -41,7 +41,7 @@ const { src, dest } = require("gulp"),
   sass = require("gulp-sass"),
   autoprefixer = require("gulp-autoprefixer"),
   shorthand = require("gulp-shorthand"),
-  cleancss = require("gulp-clean-css"),
+  csso = require('gulp-csso'),
   rename = require("gulp-rename"),
   //eslint = require('gulp-eslint'),
   terser = require('gulp-terser'),
@@ -90,13 +90,15 @@ function styles() {
     .pipe(sourcemaps.init())
     .pipe(sass())
     .pipe(
-      autoprefixer({
-        cascade: false,
-      })
+      autoprefixer(
+        'last 2 versions'
+      )
     )
     .pipe(shorthand())
-    .pipe(dest(path.build.scss))
-    .pipe(cleancss())
+    .pipe(csso({
+      restructure: false,
+      //debug: true
+    }))
     .pipe(
       rename({
         suffix: '.min'
@@ -116,7 +118,6 @@ function scripts() {
     .pipe(babel({
       presets: ['@babel/env']
     }))
-    .pipe(concat("scripts.js"))
     .pipe(terser())
     .pipe(
       rename({
@@ -132,11 +133,11 @@ function images() {
   src(path.src.img)
     .pipe(imagemin([
       imagemin.gifsicle({ interlaced: true }),
-      imagemin.mozjpeg({ quality: 70, progressive: true }),
-      imagemin.optipng({ optimizationLevel: 3 }),
+      imagemin.mozjpeg({ quality: 75, progressive: true }),
+      imagemin.optipng({ optimizationLevel: 5 }),
       imagemin.svgo({
         plugins: [
-          { removeViewBox: false },
+          { removeViewBox: true },
           { removeUnusedNS: false },
           { removeUselessStrokeAndFill: false },
           { cleanupIDs: false },
@@ -158,8 +159,8 @@ function libs() {
   src([
     'node_modules/normalize.css/normalize.css',
   ])
-  .pipe(concat("styles.min.css"))
-  .pipe(dest(path.build.scss));
+  .pipe(concat("_libs.scss"))
+  .pipe(dest(source_folder + "/scss/"));
   return src([
       'node_modules/svg4everybody/dist/svg4everybody.legacy.min.js',
     ])
@@ -231,7 +232,7 @@ function clean(params) {
   return del(path.clean);
 }
 
-let build = gulp.series(clean, gulp.parallel(libs, images, pug2html, styles, scripts, fonts, fontsStyle));
+let build = gulp.series(clean, gulp.parallel(libs, images, pug2html, styles, scripts, fonts), fontsStyle);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.libs = libs;
