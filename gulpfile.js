@@ -16,7 +16,7 @@ const path = {
     scss: source_folder + "/scss/styles.scss",
     scripts: source_folder + "/scripts/scripts.js",
     img: source_folder + "/assets/img/**/*.{jpg,png,svg,gif,ico,webp}",
-    icons: source_folder + "/assets/icons/sprite.svg",
+    icons: source_folder + "/assets/icons/**/*.svg",
     fonts: source_folder + "/assets/fonts/*.ttf",
   },
   watch: {
@@ -33,22 +33,22 @@ const { src, dest } = require("gulp"),
   browsersync = require("browser-sync").create(),
   plumber = require('gulp-plumber'),
   pug = require("gulp-pug"),
-  //puglinter = require('gulp-pug-linter'),
-  htmlvalidator = require('gulp-w3c-html-validator'),
-  bemvalidator = require('gulp-html-bem-validator'),
-  //gulpstylelint = require('gulp-stylelint'),
+  pugLinter = require('gulp-pug-linter'),
+  htmlValidator = require('gulp-w3c-html-validator'),
+  bemValidator = require('gulp-html-bem-validator'),
+  stylelint = require('gulp-stylelint'),
   sourcemaps = require('gulp-sourcemaps'),
   sass = require("gulp-sass"),
   autoprefixer = require("gulp-autoprefixer"),
   shorthand = require("gulp-shorthand"),
   csso = require('gulp-csso'),
   rename = require("gulp-rename"),
-  //eslint = require('gulp-eslint'),
+  eslint = require('gulp-eslint'),
   terser = require('gulp-terser'),
   babel = require('gulp-babel'),
   imagemin = require("gulp-imagemin"),
   concat = require("gulp-concat"),
-  svgsprite = require("gulp-svg-sprite"),
+  svgSprite = require("gulp-svg-sprite"),
   ttf2woff = require("gulp-ttf2woff"),
   ttf2woff2 = require("gulp-ttf2woff2"),
   fonter = require("gulp-fonter"),
@@ -67,10 +67,10 @@ function browserSync(params) {
 function pug2html() {
   return src(path.src.pug)
     .pipe(plumber())
-    //.pipe(puglinter({ reporter: 'default' }))
+    .pipe(pugLinter({ reporter: 'default' }))
     .pipe(pug())
-    .pipe(htmlvalidator())
-    .pipe(bemvalidator())
+    .pipe(htmlValidator())
+    .pipe(bemValidator())
     .pipe(dest(path.build.pug))
     .pipe(browsersync.stream());
 }
@@ -78,7 +78,7 @@ function pug2html() {
 function styles() {
   return src(path.src.scss)
     .pipe(plumber())
-    /*.pipe(gulpstylelint({
+    .pipe(stylelint({
       failAfterError: false,
       reporters: [
         {
@@ -86,24 +86,16 @@ function styles() {
           console: true
         }
       ]
-    }))*/
+    }))
     .pipe(sourcemaps.init())
     .pipe(sass())
-    .pipe(
-      autoprefixer(
-        'last 2 versions'
-      )
-    )
+    .pipe(autoprefixer({ cascade: false }))
     .pipe(shorthand())
     .pipe(csso({
       restructure: false,
-      //debug: true
+      debug: true
     }))
-    .pipe(
-      rename({
-        suffix: '.min'
-      })
-    )
+    .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
     .pipe(dest(path.build.scss))
     .pipe(browsersync.stream());
@@ -112,18 +104,14 @@ function styles() {
 function scripts() {
   return src(path.src.scripts)
     .pipe(plumber())
-    //.pipe(eslint())
-    //.pipe(eslint.format())
+    .pipe(eslint())
+    .pipe(eslint.format())
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['@babel/env']
     }))
     .pipe(terser())
-    .pipe(
-      rename({
-        suffix: ".min",
-      })
-    )
+    .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
     .pipe(dest(path.build.scripts))
     .pipe(browsersync.stream());
@@ -135,36 +123,34 @@ function images() {
       imagemin.gifsicle({ interlaced: true }),
       imagemin.mozjpeg({ quality: 75, progressive: true }),
       imagemin.optipng({ optimizationLevel: 5 }),
-      imagemin.svgo({
-        plugins: [
-          { removeViewBox: true },
-          { removeUnusedNS: false },
-          { removeUselessStrokeAndFill: false },
-          { cleanupIDs: false },
-          { removeComments: true },
-          { removeEmptyAttrs: true },
-          { removeEmptyText: true },
-          { collapseGroups: true }
-        ]
-      })
     ]))
     .pipe(dest(path.build.img));
     return src(path.src.icons)
+      .pipe(imagemin([
+        imagemin.svgo({
+          plugins: [
+            { removeViewBox: true },
+            { removeUnusedNS: false },
+            { removeUselessStrokeAndFill: false },
+            { cleanupIDs: false },
+            { removeComments: true },
+            { removeEmptyAttrs: true },
+            { removeEmptyText: true },
+            { collapseGroups: true }
+          ]
+        })
+      ]))
       .pipe(dest(path.build.icons))
       .pipe(browsersync.stream());
 }
 
 
 function libs() {
-  src([
-    'node_modules/normalize.css/normalize.css',
-  ])
-  .pipe(concat("_libs.scss"))
-  .pipe(dest(source_folder + "/scss/"));
   return src([
       'node_modules/svg4everybody/dist/svg4everybody.legacy.min.js',
     ])
-    .pipe(concat("scripts.min.js"))
+    .pipe(concat("libs.min.js"))
+    .pipe(terser())
     .pipe(dest(path.build.scripts));
 }
 
@@ -203,12 +189,12 @@ function fontsStyle(params) {
 
 function cb() {}
 
-// gulp svgsprite
-gulp.task("svgsprite", function () {
+// gulp svgSprite
+gulp.task("svgSprite", function () {
   return gulp
     .src([source_folder + "/assets/icons/*.svg"])
     .pipe(
-      svgsprite({
+      svgSprite({
         mode: {
           stack: {
             sprite: "../sprite.svg",

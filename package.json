@@ -9,6 +9,13 @@
     "@babel/preset-env": "^7.12.1",
     "browser-sync": "^2.26.13",
     "del": "^5.1.0",
+    "eslint": "^7.13.0",
+    "eslint-config-htmlacademy": "^0.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.1.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
@@ -33,11 +40,27 @@
     "gulp-uglify-es": "^2.0.0",
     "gulp-w3c-html-validator": "^2.0.1",
     "normalize.css": "^8.0.1",
+    "stylelint": "^13.8.0",
+    "stylelint-config-htmlacademy": "^0.1.4",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-config-standard-scss": "^1.1.0",
+    "stylelint-scss": "^3.18.0",
     "svg4everybody": "^2.1.9",
     "vinyl-ftp": "^0.6.1"
   },
+  "editorconfig-cli": [
+    "*.json",
+    "*.js",
+    "#src/*.html",
+    "#src/scripts/**/*.js",
+    "#src/assets/icons/**/*.svg",
+    "#src/scss/**/*.{sass,scss}"
+  ],
   "scripts": {
-    "test": "mocha"
+    "start": "gulp",
+    "test": "editorconfig-cli & stylelint ./#src/scss/**/*.scss --syntax scss & eslint ./#src/scripts",
+    "stylelint-fix": "stylelint ./#src/scss/**/*.scss --fix --syntax scss",
+    "eslint-fix": "eslint ./#src/scripts/**/*.js --fix"
   },
   "author": "Olena Tsybulska",
   "license": "ISC"

@@ -2,7 +2,7 @@
   @font-face {
     font-family: $font_name;
     font-display: swap;
-    src: url("../fonts/#{$file_name}.woff2") format("woff2"), url("../fonts/#{$file_name}.woff") format("woff");
+    src: url("../assets/fonts/#{$file_name}.woff2") format("woff2"), url("../assets/fonts/#{$file_name}.woff") format("woff");
     font-weight: #{$weight};
     font-style: #{$style};
   }
@@ -33,4 +33,14 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+@mixin m($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media #{inspect(map-get($breakpoints, $breakpoint))} {
+      @content;
+    }
+  } @else {
+    @error 'Не указано значение для `#{$breakpoint}`';
+  }
 }

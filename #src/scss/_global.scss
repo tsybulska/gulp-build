@@ -18,13 +18,6 @@ body {
   text-transform: uppercase;
 }
 
-html,
-body {
-  overflow: hidden;
-  position: relative;
-  height: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -53,12 +46,16 @@ a {
   color: inherit;
 }
 
-.container {
+img {
+  max-width: 100%;
+}
+
+.main {
   max-width: 1680px;
   margin: 0 auto;
 }
 
-.content {
+.hello {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -66,11 +63,15 @@ a {
   height: 100vh;
   padding: 30px;
   text-align: center;
-  // .content__top
+  // .hello__top
   &__top {
     display: flex;
     flex-direction: column;
     align-items: center;
+    img {
+      width: 100px;
+      height: 100px;
+    }
     h1 {
       padding: 30px;
       font-weight: 400;

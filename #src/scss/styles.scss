@@ -1,7 +1,11 @@
-@import "_libs.scss";
-@import "_mixin.scss";
-@import "_fonts.scss";
-@import "_variables.scss";
-@import "_global.scss";
+@import "../../node_modules/normalize.css/normalize";
 
-@import "./components/_header.scss";
+@import "_mixin";
+
+@import "_fonts";
+
+@import "_variables";
+
+@import "_global";
+
+@import "./components/_header";
