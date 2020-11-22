@@ -12,5 +12,5 @@ module.exports = function pug2html() {
     .pipe(pug())
     .pipe(htmlValidator())
     .pipe(bemValidator())
-    .pipe(gulp.dest(require("path").basename(__dirname) + '../'))
+    .pipe(gulp.dest('dist/'))
 }

@@ -7,6 +7,7 @@ module.exports = function fonts() {
   gulp.src('#src/assets/fonts/*.otf')
     .pipe(fonter({ formats: ['ttf'] }))
     .pipe(gulp.dest('#src/assets/fonts/'))
-  gulp.src('#src/assets/fonts/*.{woff2,woff}').pipe(gulp.dest(require('path').basename(__dirname) + '../assets/fonts/'))
-  return gulp.src('#src/assets/fonts/').pipe(ttf2woff()).pipe(gulp.dest(require('path').basename(__dirname) + '../assets/fonts/'))
+  gulp.src('#src/assets/fonts/*.{woff2,woff}').pipe(gulp.dest('dist/assets/fonts/'))
+  gulp.src('#src/assets/fonts/*.ttf').pipe(ttf2woff()).pipe(gulp.dest('dist/assets/fonts/'))
+  return gulp.src('#src/assets/fonts/*.ttf').pipe(ttf2woff2()).pipe(gulp.dest('dist/assets/fonts/'))
 }

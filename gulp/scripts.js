@@ -18,5 +18,5 @@ module.exports = function scripts() {
     .pipe(terser())
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest(require("path").basename(__dirname) + '../scripts/'))
+    .pipe(gulp.dest('dist/scripts/'))
 }

@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const imagemin = require('gulp-imagemin')
 
 module.exports = function img() {
-  return gulp.src('#src/assets/img/*.{jpg,png,svg,gif,ico,webp}')
+  gulp.src('#src/assets/img/*.{jpg,png,svg,gif,ico,webp}')
     .pipe(imagemin([
       imagemin.gifsicle({ interlaced: true }),
       imagemin.mozjpeg({
@@ -10,6 +10,20 @@ module.exports = function img() {
         progressive: true
       }),
       imagemin.optipng({ optimizationLevel: 5 }),
+      imagemin.svgo({
+        plugins: [
+          { removeViewBox: true },
+          { removeUnusedNS: false },
+          { removeUselessStrokeAndFill: false },
+          { cleanupIDs: false },
+          { removeComments: true },
+          { removeEmptyAttrs: true },
+          { removeEmptyText: true },
+          { collapseGroups: true }
+        ]
+      })
     ]))
-    .pipe(gulp.dest(require("path").basename(__dirname) + '../assets/img/'))
+    .pipe(gulp.dest('dist/assets/img/'))
+    return gulp.src('#src/assets/favicon/*.*')
+      .pipe(gulp.dest('dist/assets/favicon/'))
 }

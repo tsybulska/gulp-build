@@ -1,23 +1,8 @@
 const gulp = require('gulp')
-const imagemin = require('gulp-imagemin')
 const gulpSvgSprite = require('gulp-svg-sprite')
 
 module.exports = function svgSprite() {
-  return gulp.src('#src/assets/icons/*.{svg}')
-    .pipe(imagemin([
-      imagemin.svgo({
-        plugins: [
-          { removeViewBox: true },
-          { removeUnusedNS: false },
-          { removeUselessStrokeAndFill: false },
-          { cleanupIDs: false },
-          { removeComments: true },
-          { removeEmptyAttrs: true },
-          { removeEmptyText: true },
-          { collapseGroups: true }
-        ]
-      })
-    ]))
+  return gulp.src('#src/assets/icons/**/*.svg')
     .pipe(
       gulpSvgSprite({
         mode: {
@@ -28,5 +13,5 @@ module.exports = function svgSprite() {
         },
       })
     )
-    .pipe(gulp.dest(require("path").basename(__dirname) + '../assets/icons/'))
+    .pipe(gulp.dest('dist/assets/icons/'))
 }
