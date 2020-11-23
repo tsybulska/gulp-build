@@ -1,8 +1,11 @@
 const gulp = require('gulp')
+
 const imagemin = require('gulp-imagemin')
 
 module.exports = function img() {
-  gulp.src('#src/assets/img/*.{jpg,png,svg,gif,ico,webp}')
+  gulp.src('./#src/assets/favicon/*.ico')
+    .pipe(gulp.dest('./dist/assets/favicon/'))
+  return gulp.src('./#src/assets/img/*.{jpg,png,svg,gif,ico,webp}')
     .pipe(imagemin([
       imagemin.gifsicle({ interlaced: true }),
       imagemin.mozjpeg({
@@ -23,7 +26,5 @@ module.exports = function img() {
         ]
       })
     ]))
-    .pipe(gulp.dest('dist/assets/img/'))
-    return gulp.src('#src/assets/favicon/*.*')
-      .pipe(gulp.dest('dist/assets/favicon/'))
+    .pipe(gulp.dest('./dist/assets/img/'))
 }

@@ -2,8 +2,18 @@
   "name": "gulp-template",
   "version": "1.0.0",
   "description": "gulp-template",
+  "author": "Olena Tsybulska",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "scripts": {
+    "start": "gulp",
+    "test": "editorconfig-cli & stylelint ./#src/scss/components/**/*.scss --syntax scss & eslint ./#src/scripts",
+    "stylelint-fix": "stylelint ./#src/scss/components/**/*.scss --fix --syntax scss",
+    "eslint-fix": "eslint ./#src/scripts/**/*.js --fix"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "svg4everybody": "^2.1.9"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
@@ -39,29 +49,12 @@
     "gulp-ttf2woff2": "^3.0.0",
     "gulp-uglify-es": "^2.0.0",
     "gulp-w3c-html-validator": "^2.0.1",
-    "normalize.css": "^8.0.1",
     "stylelint": "^13.8.0",
     "stylelint-config-htmlacademy": "^0.1.4",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-config-standard-scss": "^1.1.0",
     "stylelint-scss": "^3.18.0",
-    "svg4everybody": "^2.1.9",
     "vinyl-ftp": "^0.6.1"
   },
-  "editorconfig-cli": [
-    "*.json",
-    "*.js",
-    "#src/*.html",
-    "#src/scripts/**/*.js",
-    "#src/assets/icons/**/*.svg",
-    "#src/scss/**/*.{sass,scss}"
-  ],
-  "scripts": {
-    "start": "gulp",
-    "test": "editorconfig-cli & stylelint ./#src/scss/**/*.scss --syntax scss & eslint ./#src/scripts",
-    "stylelint-fix": "stylelint ./#src/scss/**/*.scss --fix --syntax scss",
-    "eslint-fix": "eslint ./#src/scripts/**/*.js --fix"
-  },
-  "author": "Olena Tsybulska",
   "license": "ISC"
 }

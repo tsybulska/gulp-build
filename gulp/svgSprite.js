@@ -1,8 +1,9 @@
 const gulp = require('gulp')
+
 const gulpSvgSprite = require('gulp-svg-sprite')
 
 module.exports = function svgSprite() {
-  return gulp.src('#src/assets/icons/**/*.svg')
+  return gulp.src('./#src/assets/icons/**/*.svg')
     .pipe(
       gulpSvgSprite({
         mode: {
@@ -13,5 +14,5 @@ module.exports = function svgSprite() {
         },
       })
     )
-    .pipe(gulp.dest('dist/assets/icons/'))
+    .pipe(gulp.dest('./dist/assets/icons/'))
 }

@@ -1,4 +1,5 @@
 const gulp = require('gulp')
+
 const plumber = require('gulp-plumber')
 const stylelint = require('gulp-stylelint')
 const sourcemaps = require('gulp-sourcemaps')
@@ -9,16 +10,14 @@ const csso = require('gulp-csso')
 const rename = require("gulp-rename")
 
 module.exports = function styles() {
-  return gulp.src('#src/scss/styles.scss')
+  return gulp.src('./#src/scss/styles.scss')
     .pipe(plumber())
     .pipe(stylelint({
       failAfterError: false,
-      reporters: [
-        {
-          formatter: 'string',
-          console: true
-        }
-      ]
+      reporters: [{
+        formatter: 'string',
+        console: true
+      }]
     }))
     .pipe(sourcemaps.init())
     .pipe(sass())
@@ -30,5 +29,5 @@ module.exports = function styles() {
     }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('dist/styles/'))
+    .pipe(gulp.dest('./dist/styles/'))
 }
