@@ -1,6 +1,3 @@
-import { component } from './components/component';
-
-console.log('Scripts compiled');
+console.log('Scripts');
 
 svg4everybody();
-component();
