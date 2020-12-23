@@ -14,7 +14,7 @@ module.exports = function scripts() {
         .pipe(eslint.format())
         .pipe(sourcemaps.init())
         .pipe(babel({
-            presets: ['@babel/env']
+            presets: ['@babel/preset-env']
         }))
         .pipe(terser())
         .pipe(rename({ suffix: '.min' }))

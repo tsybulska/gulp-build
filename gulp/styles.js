@@ -5,7 +5,6 @@ const stylelint = require('gulp-stylelint')
 const sourcemaps = require('gulp-sourcemaps')
 const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
-const shorthand = require('gulp-shorthand')
 const csso = require('gulp-csso')
 const rename = require("gulp-rename")
 
@@ -22,7 +21,6 @@ module.exports = function styles() {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(autoprefixer({ cascade: false }))
-        //.pipe(shorthand())
         .pipe(csso({
             restructure: false,
             debug: true
