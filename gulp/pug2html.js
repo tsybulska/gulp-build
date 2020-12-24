@@ -10,9 +10,7 @@ module.exports = function pug2html() {
     return gulp.src('./#src/pug/*.pug')
         .pipe(plumber())
         .pipe(pugLinter({ reporter: 'default' }))
-        .pipe(pug({
-            pretty: true
-        }))
+        .pipe(pug())
         .pipe(htmlValidator())
         .pipe(bemValidator())
         .pipe(gulp.dest('./dist/'))
