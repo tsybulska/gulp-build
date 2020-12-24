@@ -15,13 +15,13 @@
 
 ## Requirements
 
-* [Node.js with npm](https://nodejs.org/en/)
+- [Node.js with npm](https://nodejs.org/en/)
 
 ## Installation
 
-Extract folder in your project
-Install all packages via `npm i` command
-Run watcher and live server with `npm start` command
+- Extract folder in your project
+- Install all packages via `npm i` command
+- Run watcher and live server with `npm start` command
 
 ## Project structure
 ```
