@@ -2,16 +2,16 @@
 
 ## List of gulp tasks
 
-clean.js — Clean folder
-pug2html.js — Pug to HTML, pug linter, html validator, bem validator
-styles.js — SCSS to CSS, stylelint, sourcemaps, autoprefixer, csso, rename to min
-scripts.js — Scripts, eslint.format, sourcemaps, babel, terser, rename to min
-fonts.js — Fonts, copy woff2 and woff, other convert to woff2 and woff
-img.js — Images, copy favicon.ico to dist, optimize (quality 75) and copy images
-svgSprites.js — SVG sprites, make sprite and template to /dist/assets/icons/
-copyDependencies.js — Copy dependencies, terser, minimize to libs.min.js
-fontsStyle.js — Fonts style, write info about fonts to /#src/scss/_fonts.scss
-serve.js — Live server, watching
+- clean.js — Clean folder
+- pug2html.js — Pug to HTML, pug linter, html validator, bem validator
+- styles.js — SCSS to CSS, stylelint, sourcemaps, autoprefixer, csso, rename to min
+- scripts.js — Scripts, eslint.format, sourcemaps, babel, terser, rename to min
+- fonts.js — Fonts, copy woff2 and woff, other convert to woff2 and woff
+- img.js — Images, copy favicon.ico to dist, optimize (quality 75) and copy images
+- svgSprites.js — SVG sprites, make sprite and template to /dist/assets/icons/
+- copyDependencies.js — Copy dependencies, terser, minimize to libs.min.js
+- fontsStyle.js — Fonts style, write info about fonts to /#src/scss/_fonts.scss
+- serve.js — Live server, watching
 
 ## Requirements
 
