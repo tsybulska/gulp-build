@@ -22,11 +22,17 @@
     height: $height;
 }
 
+// one row
 @mixin truncate($text-width) {
     max-width: $text-width;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+// integer rows
+@mixin truncate2($integer) {
+    line-clamp: $integer;
 }
 
 @mixin bg() {

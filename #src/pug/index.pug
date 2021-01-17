@@ -1,14 +1,9 @@
 extends extends/layout
-
 block content
     main.main
+        //include includes/index/info
         section.hello
-            //include includes/index/info
-            .hello__top
-                img(src="./assets/img/hello.png", alt="hello")
-                svg(width="230px" height="230px")
-                    use(xlink:href="./assets/icons/sprite.svg#moon")
-                h1 This gulp template works perfectly!
-            .hello__bottom
-                p
-                    a(href="https://otsybulska.github.io/") Developed by Olena Tsybulska
+            img(src='./assets/img/hello.png' alt='hello')
+            svg(width='250px' height='250px')
+                use(xlink:href='./assets/icons/sprite.svg#moon')
+            h1 This gulp template works perfectly!

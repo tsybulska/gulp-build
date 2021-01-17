@@ -53,31 +53,17 @@ img {
 .main {
     max-width: 1680px;
     margin: 0 auto;
+    padding: 30px;
 }
 
 .hello {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    height: 100vh;
-    padding: 30px;
+    height: 85vh;
     text-align: center;
-
-    // .hello__top
-    &__top {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        img {
-            width: 100px;
-            height: 100px;
-        }
-
-        h1 {
-            padding: 30px;
-            font-weight: 400;
-        }
+    
+    h1 {
+        padding: 30px;
     }
 }
