@@ -10,6 +10,8 @@
 - img.js — Images, copy favicon.ico to dist, optimize (quality 75) and copy images
 - svgSprites.js — SVG sprites, make sprite and template to /dist/assets/icons/
 - copyDependencies.js — Copy dependencies, terser, minimize to libs.min.js
+- favicon.js Favicon, create from svg
+- favicon2html.js Favicon to HTML, add favicon links to HTML head
 - fontsStyle.js — Fonts style, write info about fonts to /#src/scss/_fonts.scss
 - serve.js — Live server, watching
 
@@ -58,6 +60,8 @@
 ├─── /gulp/                                 # Gulp tasks folder
     ├─── clean.js
     ├─── copyDependencies.js
+    ├─── favicon.js
+    ├─── favicon2html.js
     ├─── fonts.js
     ├─── fontsStyle.js
     ├─── img.js
