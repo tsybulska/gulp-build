@@ -11,7 +11,8 @@
 -   Automaticly create favicon by adding the svg icon to /#src/assets/favicon/
 -   Convert fonts to woff2 and woff, copy them to /#src/assets/fonts/ and clean /#src/scss/\_fonts.scss/ file
 -   Two pug template pages with separate includes folders, common files in extends folder (layout, header, footer)
--   Scss styles with separate components
+-   SCSS styles with separate components
+-   Copy script libs via gulp task from /node_modules/ and copy them to scripts.js
 
 ## List of gulp tasks
 
@@ -44,7 +45,7 @@
 ├─── /#src/                                 # Developing folder
     ├─── /assets/                           # Folder with favicon, fonts, icons, images
         ├─── /favicon/
-            └─── favicon.ico
+            └─── favicon.svg
         ├─── /fonts/
             └─── Roboto-Regular.ttf
         ├─── /icons/
@@ -65,7 +66,8 @@
         └─── scripts.js
     └─── /scss/                             # Folder with styles
         ├─── /components/                   # Folder with styles for each section
-            └─── header.scss
+            └─── _header.scss
+            └─── _footer.scss
         ├─── _variables.scss                # For variable definition
         ├─── _fonts.scss                    # Turning on fonts
         ├─── _mixin.scss                    # Mixins for fonts, media etc
@@ -87,8 +89,6 @@
     └─── svgSprites.js
 ├─── /dist/
     ├─── /assets/
-        ├─── /favicon/
-            └─── favicon.ico
         ├─── /fonts/
             ├─── Roboto-Regular.woff
             └─── Roboto-Regular.woff2
@@ -97,20 +97,24 @@
                 └─── sprite.stack.html
             └─── sprite.svg
         └─── /img/
-            └─── hello.png
+            ├─── hello-640.png
+            ├─── hello-640.webp
+            ├─── hello.png
+            └─── hello.webp
     ├─── /scripts/
-        ├─── libs.min.js
         └─── scripts.min.js
     └─── /styles/
         └─── styles.min.css
     ├─── about.html
-    └─── index.html
+    ├─── index.html
+    └─── favicons and webmanifest
 ├─── .eslintignore                          # Linters
 ├─── .eslintrc.json
 ├─── .pug-lint.json
 ├─── .stylelintrc.json
 ├─── .gitattributes                         # Git files
 ├─── .gitignore
+├─── faviconData.json                       # Favicon data
 ├─── gulpfile.js                            # Config Gulp.js
 ├─── package-lock.json                      # Config file
 ├─── package.json                           # Config file
