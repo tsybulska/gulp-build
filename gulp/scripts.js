@@ -4,11 +4,16 @@ const plumber = require('gulp-plumber')
 const eslint = require('gulp-eslint')
 const sourcemaps = require('gulp-sourcemaps')
 const babel = require('gulp-babel')
+const concat = require('gulp-concat')
 const rename = require('gulp-rename')
 const terser = require('gulp-terser')
 
 module.exports = function scripts() {
-    return gulp.src('./#src/scripts/scripts.js')
+    return gulp.src([
+            './node_modules/svgxuse/svgxuse.js',
+            './#src/scripts/scripts.js'
+        ])
+        .pipe(concat('scripts.js'))
         .pipe(plumber())
         .pipe(eslint())
         .pipe(eslint.format())

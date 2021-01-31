@@ -6,7 +6,7 @@ module.exports = function(done) {
 	realFavicon.generateFavicon({
 		masterPicture: './#src/assets/favicon/favicon.svg',
 		dest: './dist/',
-		iconsPath: '/',
+		iconsPath: './',
 		design: {
 			ios: {
 				pictureAspect: 'noChange',

@@ -9,12 +9,12 @@ const fonts = require('./gulp/fonts')
 const fontsStyle = require('./gulp/fontsStyle')
 const img = require('./gulp/img')
 const svgSprite = require('./gulp/svgSprite')
-const copyDependencies = require('./gulp/copyDependencies')
+//const copyDependencies = require('./gulp/copyDependencies')
 const favicon = require('./gulp/favicon')
 const favicon2html = require('./gulp/favicon2html')
 
 const dev = gulp.parallel(pug2html, styles, scripts, fonts, img, svgSprite, favicon)
 
-const build = gulp.series(clean, dev, copyDependencies, fontsStyle, favicon2html)
+const build = gulp.series(clean, dev, fontsStyle, favicon2html) // copyDependencies
 
 module.exports.default = gulp.series(build, serve)

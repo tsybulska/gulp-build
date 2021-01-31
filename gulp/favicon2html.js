@@ -6,7 +6,7 @@ const fs = require('fs')
 let FAVICON_DATA_FILE = 'faviconData.json'
 
 module.exports =  function() {
-	return gulp.src([ './dist/*.html' ])
+	return gulp.src([ './dist/index.html' ])
 		.pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
 		.pipe(gulp.dest('./dist/'))
 }

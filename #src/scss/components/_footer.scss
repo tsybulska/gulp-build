@@ -1,5 +1,17 @@
 .footer {
-    height: 5vh;
+    margin-bottom: 40px;
     font-weight: bold;
-    text-align: center;
+
+    &__lighthouse span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        margin: 0 5px 20px;
+        border-radius: 50%;
+        border: 2px solid $color;
+        color: darken($color, 15%);
+        cursor: pointer;
+    }
 }

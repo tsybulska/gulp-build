@@ -25,7 +25,7 @@ module.exports = function serve(cb) {
     gulp.watch('./#src/assets/favicon/*.{jpg,png,svg,gif,ico,webp}', gulp.series(favicon, readyReload))
     gulp.watch('./#src/assets/img/*.{jpg,png,svg,gif,ico,webp}', gulp.series(img, readyReload))
     gulp.watch('./#src/assets/icons/**/*.svg', gulp.series(svgSprite, readyReload))
-    gulp.watch('./#src/scss/**/*.scss', gulp.series(styles, cb => gulp.src('dist/styles').pipe(server.stream()).on('end', cb)))
+    gulp.watch('./#src/scss/**/*.scss', gulp.series(styles, cb => gulp.src('./dist/styles').pipe(server.stream()).on('end', cb)))
     gulp.watch('./#src/scripts/**/*.js', gulp.series(scripts, readyReload))
     gulp.watch('./#src/pug/**/*.pug', gulp.series(pug2html, readyReload))
 

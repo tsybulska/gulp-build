@@ -3,7 +3,9 @@ block content
     main.main
         //include includes/index/info
         section.hello
-            img(src='./assets/img/hello.png' alt='hello')
-            svg(width='250px' height='250px')
+            picture
+                source(class='lazyload' data-srcset='./assets/img/hello.webp, ./assets/img/hello-640.webp 640w' type='image/webp')
+                img(class='lazyload' data-src='./assets/img/hello.png' data-srcset='./assets/img/hello.png, ./assets/img/hello-640.png 640w' alt='hello')
+            svg(width='200px' height='200px')
                 use(xlink:href='./assets/icons/sprite.svg#moon')
             h1 This gulp template works perfectly!

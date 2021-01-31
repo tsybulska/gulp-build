@@ -5,7 +5,7 @@ const terser = require('gulp-terser')
 
 module.exports = function copyDependencies() {
     return gulp.src([
-            'node_modules/svg4everybody/dist/svg4everybody.legacy.min.js',
+            '',
         ])
         .pipe(concat('libs.min.js'))
         .pipe(terser())
